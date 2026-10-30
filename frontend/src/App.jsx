@@ -3,6 +3,7 @@ import Map from './components/map.jsx';
 import LocationGraph  from './components/LocationGraph.jsx';
 import SpeciesGraph from './components/SpeciesGraph.jsx';
 import SightingInfo from './components/sightingInfo.jsx';
+import SightingForm from './components/sightingForm.jsx';
 import './App.css'
 
 function App() {
@@ -29,7 +30,12 @@ function App() {
             <SpeciesGraph locationID={selectedLocation}></SpeciesGraph>
           </div>
         </div>
+      
+      
+<div><SightingForm></SightingForm></div>
       </div>
+      
+      
     </div>
 
   )

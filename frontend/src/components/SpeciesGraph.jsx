@@ -8,11 +8,13 @@ Chart.register(BarController, BarElement);
 
 const SpeciesGraph = ({locationID}) => {
     const [speciesData, setSpeciesData] = useState(null);
-    //const [pName, setPName] = useState(null);
+    const [pName, setPName] = useState(null);
     useEffect(()=> {
         let s;
         if(locationID){
               s= sightingService.getLocationSpecies(locationID);
+              
+              
         }else{
              s= sightingService.getSpeciesSighting();
         }
@@ -20,6 +22,15 @@ const SpeciesGraph = ({locationID}) => {
             
             const seperatedData = species.map(({tick_name, amount}) =>[tick_name,amount]);
             console.log(seperatedData);
+            //provides the placename if exists
+            if(locationID){
+                const tPlace= species.map(({place_name})=>[place_name]);
+                setPName(tPlace[0][0]);
+            }else{
+                setPName(null);
+            }
+            
+            //basic data format for all tick species
             const formattedData= {
                 labels:seperatedData.map(l => l[0]),
                 datasets:[{
@@ -40,7 +51,7 @@ const SpeciesGraph = ({locationID}) => {
     return (<div>
         {!speciesData && (<div>Fetching Graph..</div>)}
         {speciesData && (<div>
-            <h2>Distribution by Species:</h2>
+            <h2>Distribution by Species {pName && (`for ${pName} `)}:</h2>
             <Bar data={speciesData}/>
 
         </div>)}
