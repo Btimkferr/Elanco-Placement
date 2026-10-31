@@ -12,5 +12,7 @@ The DB is then communicated with on the backend using mysql2. Any requests are h
 The frontend is built using vite and react, which would allow for scalability for more displays and visuals, as well as consistency of reusable components. 
 The use of use states allowed me to dynamically update the single page with different information, without having to reroute the user, leading to a more streamlined user experience.
 
+Walkthrough video is included [here](https://youtu.be/tOezGopXUGQ)
+
 Hopefully you've enjoyed,
 Beck
