@@ -7,6 +7,7 @@ const sightingRouter = require('./controllers/user/sightings');
 const app = express();
 
 app.use(express.json())
+app.use(express.static('dist'));
 
 app.use('/api/sightings', sightingRouter);
 
