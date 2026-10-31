@@ -75,6 +75,7 @@ const SightingForm = () => {
                 <h2>Report a Sighting !</h2>
                 <div>
                     <label>
+                        Sighting Date:
                         <input type="date"  name="new-sighting-date" id="new-sighting-date"
                         value = {date}
                         max = {today}

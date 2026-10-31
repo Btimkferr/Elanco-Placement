@@ -21,7 +21,7 @@ const SpeciesGraph = ({locationID}) => {
         s.then(species=>{
             
             const seperatedData = species.map(({tick_name, amount}) =>[tick_name,amount]);
-            console.log(seperatedData);
+            
             //provides the placename if exists
             if(locationID){
                 const tPlace= species.map(({place_name})=>[place_name]);

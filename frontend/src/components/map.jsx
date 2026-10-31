@@ -30,9 +30,7 @@ const Boundary = () =>{
                 }
             )
             borderMap.addTo(map);
-            const cutLayer =L.geoJSON(border);
             
-            map.fitBounds(cutLayer.getBounds());
         }
         fetchBorders();
     }, [map])
@@ -43,7 +41,7 @@ const Heatmap = ({areas,setSelectedLocation}) => {
     const map =useMap();
 
     const onClickLocation =(e) =>{
-        console.log(e);
+       
         setSelectedLocation(e);
     }
     useEffect(() => {
@@ -53,9 +51,9 @@ const Heatmap = ({areas,setSelectedLocation}) => {
         
         const heatAreas= areas.map(({latitude,longitude,sightings}) =>[Number(latitude),Number(longitude),Number(sightings)]);
 
-        //console.log(areas['latitude']);
+        
         const max = Math.max(...(heatAreas.map(p =>p[2])));
-        console.log(max);
+       
         const min = Math.min(...(heatAreas.map(p =>p[2])));
         const range = max- min+1;
         const adjustedAreas =heatAreas.map(([latitude,longitude,count])=> [
@@ -77,7 +75,7 @@ const Heatmap = ({areas,setSelectedLocation}) => {
         const places = areas.map((({location_id, place_name, latitude, longitude}) => [Number(location_id),place_name,Number(latitude),Number(longitude)] ));
 
         places.forEach(([location_id, place_name, latitude, longitude]) =>{
-            console.log(latitude, longitude);
+            
             const marker= L.marker([latitude,longitude],
                 {Icon:L.divIcon({
                     className:'invisibleMarker',
@@ -120,7 +118,7 @@ const Map = ({setSelectedLocation}) => {
     
 
     return(
-    <MapContainer center ={[54.002,-2.542]} zoom={5} style={{height:'100%',width:'100%', alignItems:'center'}} >
+    <MapContainer center ={[54.002,-2.542]} zoom={6} style={{height:'85vh',width:'100%', alignItems:'center'}} >
         <Boundary/>
         <Heatmap areas={points} setSelectedLocation={setSelectedLocation}/>
     </MapContainer >

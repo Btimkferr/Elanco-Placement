@@ -14,6 +14,17 @@ sightingRouter.get('/counts', async(request, response) => {
     }
     
 })
+sightingRouter.get('/yearly/:id', async(request, response) => {
+    try {
+        const query = "SELECT date_format(sighting_date, '%Y') as year, ifnull(count(Si.sighting_id),0) as amount, L.place_name " +
+        "FROM Sighting Si Inner join Location L on (Si.location_id = L.location_id) WHERE Si.location_id = ? group by year order by year asc";
+        const [rows] = await con.query(query,[request.params.id]);
+        response.json(rows);
+        
+    }catch (e){
+        console.error("Failed fetching by year :" + e);
+    }
+})
 //gets a list of all locations, with place name
 sightingRouter.get('/location', async (request,response) => {
    try{ 
@@ -103,10 +114,19 @@ sightingRouter.post('/', async (request, response) =>{
 
 
     const [result] = await con.execute("INSERT INTO Sighting (sighting_date,sighting_time,location_id,species_id) VALUES (?,?,?,?)", [body.sighting_date,body.sighting_time,body.location_id,body.species_id]);
+    if(result){
+        updateCount(body.location_id);
+    }
     response.status(201).json(result);
 })
 
 
-const updateCount = () => {};
+
+
+const updateCount =  async (location_id) => {
+    const query = "Update Sighting_Counts Set sightings = sightings +1 Where location_id=?";
+    await con.query(query, [location_id]);
+
+};
 
 module.exports = sightingRouter;

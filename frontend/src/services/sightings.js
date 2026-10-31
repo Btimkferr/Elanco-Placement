@@ -35,5 +35,10 @@ const postNewSighting = async (sighting) => {
     return request.data;
 
 }
+const getLocationSightingsYearly = async (id) => {
+    const request=  await axios.get(`${url}/yearly/${id}`);
+    
+    return request.data;
+}
 
-export default  {getSightingCount,getLatestSighting, getSpeciesSighting, getLocationSpecies, getLocationList, getSpeciesList,postNewSighting};
+export default  {getSightingCount,getLatestSighting, getSpeciesSighting, getLocationSpecies, getLocationList, getSpeciesList,postNewSighting,getLocationSightingsYearly};

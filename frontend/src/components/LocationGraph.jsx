@@ -14,7 +14,7 @@ const LocationGraph = ({locationID}) => {
             sightingService.getLocationSpecies(locationID).then(location=>{
             
             const seperatedData = location.map(({tick_name,sightings}) =>[tick_name,sightings]);
-            console.log(seperatedData);
+          
             const formattedData= {
                 labels:seperatedData.map(l => l[0]),
                 datasets:[{
@@ -57,6 +57,7 @@ const LocationGraph = ({locationID}) => {
     return (<div>
         {!locData && (<div>Fetching Graph..</div>)}
         {locData && (<div>
+            <h2>Sightings by city</h2>
             <Bar data={locData}/>
 
         </div>)
