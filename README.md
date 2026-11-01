@@ -1,5 +1,5 @@
 Hi there Becky/Ian/any other colleagues.
-Please find attached a static web service render [Here](https://elanco-placement-1.onrender.com/api/) which you can use to interact with the program once it's been woken up.
+Please find attached a static web service render [Here](https://elanco-placement-1.onrender.com/) which you can use to interact with the program once it's been woken up.
 
 Api calls can also be made to this point if they're followed with /api/sightings/ [eg. counts](https://elanco-placement-1.onrender.com/api/sightings/counts)
 
